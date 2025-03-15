@@ -1,6 +1,6 @@
 # Assessing BLEU Score Variability in LLMs - A Non-Parametric Comparison Using the Friedman Test
 
-## Back-Translation Validation of Translation Performance for LLMs and Translation Tools
+## Back-Translation Validation of Translation Performance for LLMs and Translation Tools - `sample_size.py`.
 
 This subsection outlines the method for evaluating LLMs and translation tools using back-translation, with the BLEU score as the quality metric.
 
