@@ -1,6 +1,6 @@
 # Assessing BLEU Score Variability in LLMs - A Non-Parametric Comparison Using the Friedman Test
 
-## `sample_size.py`.
+## `sample_size.py`
 
 This subsection outlines the method for evaluating LLMs and translation tools using back-translation, with the BLEU score as the quality metric.
 
@@ -21,3 +21,6 @@ where:
 Due to potential violations of normality and homoscedasticity, non-parametric methods are used: the Friedman test is applied to assess significant differences between translation models across texts. If significant differences are found, the Dunn post-hoc test, with adjustments for multiple comparisons (e.g., Bonferroni correction), is employed to identify statistically significant pairs of models.
 
 The sample size was calculated for a significance level of 0.05 and a power of 0.8, considering a medium effect size (\( f = 0.3 \)) for non-parametric block designs. It required **\( n = 89 \) distinct texts**, each translated by **\( k = 5 \) models**, totaling **445 observations**.
+
+
+## 
