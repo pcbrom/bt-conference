@@ -3,8 +3,7 @@ from dotenv import load_dotenv
 import pandas as pd
 from tqdm import tqdm
 import time
-from google import genai
-from google.genai import types
+import openai
 
 # Specify the path to your .env file
 dotenv_path = "/mnt/4d4f90e5-f220-481e-8701-f0a546491c35/arquivos/projetos/.env"
@@ -13,11 +12,8 @@ dotenv_path = "/mnt/4d4f90e5-f220-481e-8701-f0a546491c35/arquivos/projetos/.env"
 load_dotenv(dotenv_path=dotenv_path)
 
 # Access and store the environment variable
-google_api_key = os.getenv("GOOGLE_API_KEY")
-model = 'gemini-2.0-flash-thinking-exp'
-
-# Config client
-client = genai.Client(api_key=google_api_key)
+openai_api_key = os.getenv("OPENAI_API_KEY")
+model = 'gpt-4.5-preview-2025-02-27'
 
 # Import
 csv_file = "data/sampled Exact and Earth Sciences_Chemistry abstracts.csv"
@@ -31,7 +27,7 @@ df['EN_ZH'] = df['EN_ZH'].astype(object)
 
 # Translate ZH -> EN and then EN -> ZH in one loop
 for index, row in tqdm(df.iterrows(), total=len(df), desc="Processing Translations"):
-    if index % 5 == 0 and index != 0:
+    if index % 20 == 0 and index != 0:
         print("Pausing for API rate limit...")
         time.sleep(60)
 
@@ -39,15 +35,15 @@ for index, row in tqdm(df.iterrows(), total=len(df), desc="Processing Translatio
         # Step 1: Translate from ZH to EN
         prompt_zh_en = f"Translate the following Chinese text to English, providing only the translated text without any additional explanations or context: {row['abstract']}"
         
-        response_zh_en = client.models.generate_content(model=model, contents=prompt_zh_en)
-        generated_text_zh_en = response_zh_en.text if hasattr(response_zh_en, 'text') else "No response generated"
+        response_zh_en = openai.chat.completions.create(model=model, messages=[{"role": "user", "content": prompt_zh_en}])
+        generated_text_zh_en = response_zh_en.choices[0].message.content if hasattr(response_zh_en, 'text') else "No response generated"
         df.loc[index, 'ZH_EN'] = generated_text_zh_en
 
         # Step 2: Translate back from EN to ZH
         prompt_en_zh = f"Translate the following English text to Chinese, providing only the translated text without any additional explanations or context: {generated_text_zh_en}"
         
-        response_en_zh = client.models.generate_content(model=model, contents=prompt_en_zh)
-        generated_text_en_zh = response_en_zh.text if hasattr(response_en_zh, 'text') else "No response generated"
+        response_en_zh = openai.chat.completions.create(model=model, messages=[{"role": "user", "content": prompt_en_zh}])
+        generated_text_en_zh = response_en_zh.choices[0].message.content if hasattr(response_en_zh, 'text') else "No response generated"
         df.loc[index, 'EN_ZH'] = generated_text_en_zh
 
     except Exception as e:
