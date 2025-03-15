@@ -31,7 +31,7 @@ df['EN_ZH'] = df['EN_ZH'].astype(object)
 
 # Translate ZH -> EN and then EN -> ZH in one loop
 for index, row in tqdm(df.iterrows(), total=len(df), desc="Processing Translations"):
-    if index % 100 == 0 and index != 0:
+    if index % 5 == 0 and index != 0:
         print("Pausing for API rate limit...")
         time.sleep(60)
 
