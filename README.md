@@ -23,4 +23,6 @@ Due to potential violations of normality and homoscedasticity, non-parametric me
 The sample size was calculated for a significance level of 0.05 and a power of 0.8, considering a medium effect size (\( f = 0.3 \)) for non-parametric block designs. It required **\( n = 89 \) distinct texts**, each translated by **\( k = 5 \) models**, totaling **445 observations**.
 
 
-## 
+## `select_sample.py`
+
+This script extracts abstracts from a text file, filters them based on length, and saves a random sample to a CSV file. It uses regular expressions to identify abstracts, pandas for data manipulation, and saves the sampled abstracts for further analysis. The script ensures that only abstracts with a character length greater than 20 are considered, and then it randomly samples 89 abstracts to be used in subsequent steps of the analysis. This ensures a diverse set of texts for evaluating the translation models.
