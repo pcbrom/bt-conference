@@ -1,3 +1,4 @@
+# Re-import required module due to execution state reset
 import statsmodels.stats.power as smp
 
 # Define parameters
@@ -18,10 +19,13 @@ k_repetitions = 5  # Five translation models
 # Number of texts required (n)
 n_texts = n_samples_per_group  
 
-# Total number of observations
-total_observations = n_texts * k_repetitions
+# Define the number of repetitions per text for consistency evaluation
+r_repetitions = 3  
 
-# Print results
-print(f"Required number of texts (n): {n_texts}")
-print(f"Number of repetitions per model (k): {k_repetitions}")
-print(f"Total number of observations (n × k): {total_observations}")
+# Total number of observations considering consistency repetitions
+total_observations = n_texts * k_repetitions * r_repetitions
+
+print(f"Number of texts (n): {n_texts}")
+print(f"Number of models (k): {k_repetitions}")
+print(f"Number of repetitions per text (r): {r_repetitions}")
+print(f"Total number of observations: {total_observations}")

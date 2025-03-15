@@ -16,10 +16,13 @@ df = pd.DataFrame({'abstract': df_list})
 df['nchar'] = df['abstract'].apply(len)
 df = df[df['nchar'] > 20]
 
-print(df['nchar'].describe())
+sampled_df = df.sample(n=89, random_state=42)
+sampled_df_rep = sampled_df.loc[sampled_df.index.repeat(3)].reset_index(drop=True)
+sampled_df_rep['Repetition'] = [1, 2, 3] * (len(sampled_df_rep) // 3) + [1, 2, 3][:len(sampled_df_rep) % 3]
+cols_to_create = ['EN_ZH', 'ZH_EN']
+for col in cols_to_create:
+    sampled_df_rep[col] = ''
 
-print(df.head())
+sampled_df_rep = sampled_df_rep.drop('nchar', axis=1)
 
-
-sampled_df = df['abstract'].sample(n=89, random_state=42)
-sampled_df.to_csv("data/sampled Exact and Earth Sciences_Chemistry abstracts.csv", index=False)
+sampled_df_rep.to_csv("data/sampled Exact and Earth Sciences_Chemistry abstracts.csv", index=False)
