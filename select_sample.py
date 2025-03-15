@@ -19,7 +19,7 @@ df = df[df['nchar'] > 20]
 sampled_df = df.sample(n=89, random_state=42)
 sampled_df_rep = sampled_df.loc[sampled_df.index.repeat(3)].reset_index(drop=True)
 sampled_df_rep['Repetition'] = [1, 2, 3] * (len(sampled_df_rep) // 3) + [1, 2, 3][:len(sampled_df_rep) % 3]
-cols_to_create = ['EN_ZH', 'ZH_EN']
+cols_to_create = ['ZH_EN', 'EN_ZH']
 for col in cols_to_create:
     sampled_df_rep[col] = ''
 

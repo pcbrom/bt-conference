@@ -14,7 +14,7 @@ load_dotenv(dotenv_path=dotenv_path)
 
 # Access and store the environment variable
 google_api_key = os.getenv("GOOGLE_API_KEY")
-model = 'gemini-2.0-flash'
+model = 'gemini-2.0-flash-thinking-exp'
 
 # Config client
 client = genai.Client(api_key=google_api_key)
@@ -22,39 +22,39 @@ client = genai.Client(api_key=google_api_key)
 # Import model
 csv_file = "data/sampled Exact and Earth Sciences_Chemistry abstracts.csv"
 df = pd.read_csv(csv_file, decimal='.', sep=',', encoding='utf-8')
-cols_to_create = ['Re', 'EN_ZH', 'ZH_EN']
-for col in cols_to_create:
-    if col not in df.columns:
-        df[col] = ''
+# df = df.head(2)
 print(df)
 
-"""# Iterate over each row and make API call
-output_filename = f"experimental_design_results_{model}.csv"
-for index, row in tqdm(df.iterrows(), total=len(df), desc="Processando"):
+# Ensure the columns are explicitly set as object (string)
+df['ZH_EN'] = df['ZH_EN'].astype(object)
+df['EN_ZH'] = df['EN_ZH'].astype(object)
+
+# Translate ZH -> EN and then EN -> ZH in one loop
+for index, row in tqdm(df.iterrows(), total=len(df), desc="Processing Translations"):
     if index % 100 == 0 and index != 0:
-        print("min. pause...")
+        print("Pausing for API rate limit...")
         time.sleep(60)
+
     try:
-        augmented_prompt = row['augmented_prompt']
-
-        generation_config = types.GenerateContentConfig(
-            temperature=float(row['temperature']),
-            top_p=float(row['top_p'])
-        )
-
-        response = client.models.generate_content(
-            model=model,
-            contents=augmented_prompt,
-            config=generation_config
-        )
+        # Step 1: Translate from ZH to EN
+        prompt_zh_en = f"Translate the following Chinese text to English, providing only the translated text without any additional explanations or context: {row['abstract']}"
         
-        # Extract and store the generated text
-        generated_text = response.text if hasattr(response, 'text') else "Nenhuma resposta gerada"
-        df.loc[index, 'results'] = generated_text
+        response_zh_en = client.models.generate_content(model=model, contents=prompt_zh_en)
+        generated_text_zh_en = response_zh_en.text if hasattr(response_zh_en, 'text') else "No response generated"
+        df.loc[index, 'ZH_EN'] = generated_text_zh_en
+
+        # Step 2: Translate back from EN to ZH
+        prompt_en_zh = f"Translate the following English text to Chinese, providing only the translated text without any additional explanations or context: {generated_text_zh_en}"
+        
+        response_en_zh = client.models.generate_content(model=model, contents=prompt_en_zh)
+        generated_text_en_zh = response_en_zh.text if hasattr(response_en_zh, 'text') else "No response generated"
+        df.loc[index, 'EN_ZH'] = generated_text_en_zh
 
     except Exception as e:
-        print(f"Erro ao processar a linha {index}: {e}")
-        df.loc[index, 'results'] = f"Erro: {e}" # Store the error message
+        print(f"Error processing row {index}: {e}")
+        df.loc[index, 'ZH_EN'] = f"Error: {e}"
+        df.loc[index, 'EN_ZH'] = f"Error: {e}"
 
-# Save the updated DataFrame (optional)
-df.to_csv(output_filename, index=False)"""
+# Save
+output_filename = f"results_data/experimental_design_results_{model}.csv"
+df.to_csv(output_filename, index=False)
