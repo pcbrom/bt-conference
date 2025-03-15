@@ -2,37 +2,14 @@
 
 ## Methodology
 
-The study follows a **factorial experimental design** to analyze the performance differences among multiple **Large Language Models (LLMs)** in machine translation. The experiment evaluates three translation directions: **EN→ZH** (English to Chinese), **ZH→EN** (Chinese to English), and **Back Translation**. Each model was tested using an independent set of **\( n \)** texts, and translations were evaluated based on the **BLEU score**. The experiment follows a **repeated measures design**, where each text is translated by all models across all translation directions.
+This subsection outlines the method for evaluating LLMs and translation tools using back-translation, with the BLEU score as the quality metric.
 
-The LLMs analyzed in this study include: **Grok**, **DeepSeek-R1**, **GPT 4.5**, **Gemini 2.0 Flash Thinking**, **Mistral Large**, and **Google Translate** (possibly removed). Each model processed the same texts, allowing for direct performance comparisons.
+Each text selected for the experiment is considered an independent block, with $k$ representing the number of texts (blocks) and each text being independently processed by all $n$ models (e.g., Grok, DeepSeek-R1, GPT 4.5, Gemini 2.0 Flash Thinking, and Mistral Large). Texts must reflect diverse content to capture real variability in translation scenarios.
 
-### Mathematical Model
-\[
-Y_{ijl} = \mu + \tau_i + \delta_j + (\tau\delta)_{ij} + \gamma_l + \epsilon_{ijl}
-\]
+In the experimental procedure, each model translates the text from the source language to an intermediate language and then back to the original language. The BLEU score of the back-translation serves as a measure of semantic and syntactic preservation. The BLEU scores, represented by $Y_{ij}$ for the $j$-th text (block) translated by the $i$-th model, are organized into a data matrix with $n$ treatments (models) and $k$ blocks (texts). The analysis aims to distinguish translation model effects while accounting for text variability, with the model formulated as:
+\begin{equation}
+    Y_{ij} = \eta + \tau_i + \beta_j + \epsilon_{ij},
+\end{equation}
+where $\eta$ represents the overall mean of the BLEU scores, $\tau_i$ denotes the effect of the $i$-th model, $\beta_j$ accounts for the effect of the $j$-th text (block) by controlling for inherent text variability, and $\epsilon_{ij}$ corresponds to the random error associated with the translation of text $j$ by model $i$.
 
-where:
-
-- \( Y_{ijl} \) represents the BLEU score for the \( i \)-th LLM, in the \( j \)-th translation direction, for the \( l \)-th text.
-- \( \mu \) is the overall mean of the experiment.
-- \( \tau_i \) represents the effect of the \( i \)-th LLM.
-- \( \delta_j \) is the effect of the \( j \)-th translation direction.
-- \( (\tau\delta)_{ij} \) denotes the interaction effect between the LLM and translation direction.
-- \( \gamma_l \) accounts for the random effect of text variability.
-- \( \epsilon_{ijl} \) represents the residual error.
-
-### Statistical Analysis
-Since normality assumptions may not hold, a **non-parametric** approach was chosen using the **Friedman test**, followed by the **Dunn test with Bonferroni correction** for post hoc comparisons.
-
-### Summary of Methodology
-| Step | Description |
-|---|---|
-| **Experimental Factors** | LLM models and translation directions (EN→ZH, ZH→EN, Back Translation) |
-| **Experimental Unit** | Independently translated texts |
-| **Design** | Factorial with repeated measures |
-| **Evaluation Metric** | BLEU score |
-| **Statistical Test** | Friedman test for overall comparisons |
-| **Post Hoc Test** | Dunn test with Bonferroni correction |
-| **Sample Size Calculation** | Power analysis for Friedman test |
-
-This methodology ensures a robust statistical approach for comparing LLM performance.
+Due to potential violations of normality and homoscedasticity, non-parametric methods are used: the Friedman test is applied to assess significant differences between translation models across texts. If significant differences are found, the Dunn post-hoc test, with adjustments for multiple comparisons (e.g., Bonferroni correction), is employed to identify statistically significant pairs of models.
