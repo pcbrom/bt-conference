@@ -49,13 +49,13 @@ model_tokens = df.groupby('model').agg({
 })
 
 # Calculate total tokens in millions
-total_augmented_prompt_tokens = model_tokens['augmented_prompt_tokens'].sum() / 1_000_000
+total_abstract_tokens = model_tokens['abstract_tokens'].sum() / 1_000_000
 total_results_tokens = model_tokens['results_tokens'].sum() / 1_000_000
 
 # Prepare data for DataFrame
 data = []
 for model, row in model_tokens.iterrows():
-    augmented_prompt_tokens_millions = row['augmented_prompt_tokens'] / 1_000_000
+    abstract_tokens_millions = row['abstract_tokens'] / 1_000_000
     results_tokens_millions = row['results_tokens'] / 1_000_000
     
     # Get model pricing
@@ -67,13 +67,13 @@ for model, row in model_tokens.iterrows():
         continue
     
     # Calculate cost
-    augmented_prompt_cost = augmented_prompt_tokens_millions * model_price_input
+    augmented_prompt_cost = abstract_tokens_millions * model_price_input
     results_cost = results_tokens_millions * model_price_output
     total_cost = augmented_prompt_cost + results_cost
     
     data.append([
         model,
-        augmented_prompt_tokens_millions,
+        abstract_tokens_millions,
         augmented_prompt_cost,
         results_tokens_millions,
         results_cost,
@@ -95,7 +95,7 @@ print("\n🔹 Costs (Dollars) and Tokens (Millions) by Model:")
 print(results_df.to_string(index=False))
 
 print("\n🔹 Totals:")
-print(f"  - Total Tokens Augmented Prompt: {total_augmented_prompt_tokens:.3f}M")
+print(f"  - Total Tokens Augmented Prompt: {total_abstract_tokens:.3f}M")
 print(f"  - Total Tokens Results: {total_results_tokens:.3f}M")
 
 # Calculate total cost
