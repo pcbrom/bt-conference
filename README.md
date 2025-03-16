@@ -6,7 +6,7 @@ This script focuses on calculating the required sample size for a statistically 
 
 ### Methodology: Block Design and Statistical Model
 
-The experimental design utilizes a block design, where each selected text serves as an independent block. This approach allows us to account for the variability in translation difficulty across different texts. Each text is translated by \( k = 5 \) different models (e.g., Grok, DeepSeek-R1, GPT 4.5, Gemini 2.0 Flash Thinking, and Mistral Large), ensuring that each model processes the same set of texts. The texts are chosen to represent a diverse range of content, reflecting the real-world variability encountered in translation tasks.
+The experimental design utilizes a block design, where each selected text serves as an independent block. This approach allows us to account for the variability in translation difficulty across different texts. Each text is translated by \( k = 5 \) different models (e.g., Grok, DeepSeek-V3, GPT 4.5, Gemini 2.0 Flash Thinking, and Mistral Large), ensuring that each model processes the same set of texts. The texts are chosen to represent a diverse range of content, reflecting the real-world variability encountered in translation tasks.
 
 The translation process involves translating each text from the source language to an intermediate language and then back to the original language. The BLEU score of the back-translated text is used as a measure of how well the model preserves the semantic and syntactic integrity of the original text.
 
@@ -106,7 +106,7 @@ This script performs an *estimated* cost analysis for different translation mode
 
 2.  **NaN Value Handling:** Missing values (NaN) in the 'abstract' column are filled with empty strings to prevent errors during token counting.
 
-3.  **Model Price Definition:** A dictionary (`model_data`) is defined to store the pricing information for each translation model. This dictionary includes the encoding type, input price per million tokens, and output price per million tokens for each model. Example models include "gpt-4.5-preview-2025-02-27", "deepseek-reasoner", "gemini-2.0-flash-thinking-exp", "Grok", and "Mistral".
+3.  **Model Price Definition:** A dictionary (`model_data`) is defined to store the pricing information for each translation model. This dictionary includes the encoding type, input price per million tokens, and output price per million tokens for each model. Example models include "gpt-4.5-preview-2025-02-27", "deepseek-chat", "gemini-2.0-flash-thinking-exp", "Grok", and "Mistral".
 
 4.  **Token Counting Function:** The `count_tokens` function calculates the number of tokens in a given text string using the `tiktoken` library and the "cl100k_base" encoding. This function handles potential encoding errors and returns 0 for invalid or empty text values. **The `cl100k_base` tokenizer is used for estimation purposes, and the actual token usage may vary depending on the specific model.**
 
@@ -130,7 +130,7 @@ This script performs an *estimated* cost analysis for different translation mode
 🔹 Costs (Dollars) and Tokens (Millions) per Model:
                         Model  Total Tokens (M)  Total Cost ($)
    gpt-4.5-preview-2025-02-27          0.209331       26.166375
-            deepseek-reasoner          0.209331        0.315392
+                deepseek-chat          0.209331        0.344001
 gemini-2.0-flash-thinking-exp          0.209331        0.000000
                          Grok          0.209331        1.535094
                       Mistral          0.209331        0.000000

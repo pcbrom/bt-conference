@@ -12,7 +12,7 @@ df['abstract'] = df['abstract'].fillna("")
 # Define model prices
 model_data = {
     "gpt-4.5-preview-2025-02-27": {"encoding": "cl100k_base", "price_input": 75.0, "price_output": 150.0},
-    "deepseek-reasoner": {"encoding": None, "price_input": 0.14, "price_output": 2.19},
+    "deepseek-chat": {"encoding": None, "price_input": 0.27, "price_output": 1.10},
     "gemini-2.0-flash-thinking-exp": {"encoding": "cl100k_base", "price_input": 0.0, "price_output": 0.0},
     "Grok": {"encoding": "cl100k_base", "price_input": 2.0, "price_output": 10.0},
     "Mistral": {"encoding": "cl100k_base", "price_input": 0.0, "price_output": 0.0},
