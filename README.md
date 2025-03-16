@@ -130,7 +130,7 @@ This script performs an *estimated* cost analysis for different translation mode
 🔹 Costs (Dollars) and Tokens (Millions) per Model:
                         Model  Total Tokens (M)  Total Cost ($)
    gpt-4.5-preview-2025-02-27          0.209331       26.166375
-                deepseek-chat          0.209331        0.344001
+                deepseek-chat          0.209331        0.172349
 gemini-2.0-flash-thinking-exp          0.209331        0.000000
                          Grok          0.209331        1.535094
                       Mistral          0.209331        0.000000
