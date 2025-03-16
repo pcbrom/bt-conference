@@ -58,7 +58,7 @@ df.to_csv(output_filename, index=False)
 
 
 # Reprocess
-def reprocess_errors(df, model, client):
+def reprocess_errors(model, client):
     output_filename = f"results_data/experimental_design_results_{model}.csv"
     previous_df = pd.read_csv(output_filename)
 
