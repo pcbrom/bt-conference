@@ -125,15 +125,15 @@ This script performs an *estimated* cost analysis for different translation mode
 8.  **Results DataFrame Creation:** A new pandas DataFrame (`results_df`) is created from the aggregated data. This DataFrame contains columns for "Model", "Total Tokens (M)", and "Total Cost ($)".
 
 9.  **Results Display:** The script prints the `results_df` to the console, displaying the cost and token consumption for each model. An example output might look like this:
-
 ```
 🔹 Costs (Dollars) and Tokens (Millions) per Model:
                         Model  Total Tokens (M)  Total Cost ($)
-   gpt-4.5-preview-2025-02-27          0.209331       26.166375
-                deepseek-chat          0.209331        0.172349
-gemini-2.0-flash-thinking-exp          0.209331        0.000000
-                         Grok          0.209331        1.535094
-                      Mistral          0.209331        0.000000
+   gpt-4.5-preview-2025-02-27          0.293063       33.492960
+                deepseek-chat          0.293063        0.206540
+gemini-2.0-flash-thinking-exp          0.293063        0.000000
+                         Grok          0.293063        1.814202
+                      Mistral          0.293063        0.000000
+
 ```
 
 10. **Total Calculation:** The script calculates the total number of tokens and the total cost across all models.
@@ -142,8 +142,8 @@ gemini-2.0-flash-thinking-exp          0.209331        0.000000
 
 ```
 🔹 Totals:
-  - Total Tokens: 1.047M
-  - Total Cost (All Models): $28.02
+  - Total Tokens: 1.465M
+  - Total Cost (All Models): $35.51
 ```
 
 ### Purpose:

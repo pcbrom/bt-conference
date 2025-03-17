@@ -40,7 +40,7 @@ tqdm.pandas(desc="Calculating tokens")
 df['abstract_tokens'] = df.progress_apply(lambda row: count_tokens(row['abstract']), axis=1)
 
 # Create the 'results_tokens' column if it doesn't exist
-df['results_tokens'] = 2 * df['abstract_tokens']
+df['results_tokens'] = 1.1 * df['abstract_tokens']
 
 # Create the cost table for ALL models
 data = []
@@ -48,8 +48,8 @@ for model in model_data.keys():
     
     # If the model exists in the DataFrame, use the real values
     if not df.empty:
-        tokens_input = df['abstract_tokens'].sum() / 1_000_000
-        tokens_output = df['results_tokens'].sum() / 1_000_000
+        tokens_input = df['abstract_tokens'].sum() * 2 / 1_000_000
+        tokens_output = df['results_tokens'].sum() * 2 / 1_000_000
     else:
         # Otherwise, set values to zero
         tokens_input = 0
