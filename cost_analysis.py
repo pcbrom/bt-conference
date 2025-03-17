@@ -14,8 +14,8 @@ model_data = {
     "gpt-4.5-preview-2025-02-27": {"encoding": "cl100k_base", "price_input": 75.0, "price_output": 150.0},
     "deepseek-chat": {"encoding": None, "price_input": 0.27, "price_output": 1.10},
     "gemini-2.0-flash-thinking-exp": {"encoding": "cl100k_base", "price_input": 0.0, "price_output": 0.0},
-    "Grok": {"encoding": "cl100k_base", "price_input": 2.0, "price_output": 10.0},
-    "Mistral": {"encoding": "cl100k_base", "price_input": 0.0, "price_output": 0.0},
+    "grok-beta": {"encoding": "cl100k_base", "price_input": 5.0, "price_output": 15.0},
+    "claude-3-7-sonnet-20250219": {"encoding": "cl100k_base", "price_input": 3.0, "price_output": 15.0},
 }
 
 # Function to count tokens
@@ -40,7 +40,7 @@ tqdm.pandas(desc="Calculating tokens")
 df['abstract_tokens'] = df.progress_apply(lambda row: count_tokens(row['abstract']), axis=1)
 
 # Create the 'results_tokens' column if it doesn't exist
-df['results_tokens'] = 1.1 * df['abstract_tokens']
+df['results_tokens'] = df['abstract_tokens']
 
 # Create the cost table for ALL models
 data = []
@@ -86,3 +86,5 @@ total_cost_all_models = results_df["Total Cost ($)"].sum()
 print("\n🔹 Totals:")
 print(f"  - Total Tokens: {total_tokens:.3f}M")
 print(f"  - Total Cost (All Models): ${total_cost_all_models:.2f}")
+
+print(df["results_tokens"].describe())

@@ -6,7 +6,7 @@ This script focuses on calculating the required sample size for a statistically 
 
 ### Methodology: Block Design and Statistical Model
 
-The experimental design utilizes a block design, where each selected text serves as an independent block. This approach allows us to account for the variability in translation difficulty across different texts. Each text is translated by \( k = 5 \) different models (e.g., Grok, DeepSeek-V3, GPT 4.5, Gemini 2.0 Flash Thinking, and Mistral Large), ensuring that each model processes the same set of texts. The texts are chosen to represent a diverse range of content, reflecting the real-world variability encountered in translation tasks.
+The experimental design utilizes a block design, where each selected text serves as an independent block. This approach allows us to account for the variability in translation difficulty across different texts. Each text is translated by \( k = 5 \) different models (e.g., Grok, DeepSeek-V3, GPT 4.5, Gemini 2.0 Flash Thinking, and Claude 3.7 Sonnet), ensuring that each model processes the same set of texts. The texts are chosen to represent a diverse range of content, reflecting the real-world variability encountered in translation tasks.
 
 The translation process involves translating each text from the source language to an intermediate language and then back to the original language. The BLEU score of the back-translated text is used as a measure of how well the model preserves the semantic and syntactic integrity of the original text.
 
@@ -106,7 +106,7 @@ This script performs an *estimated* cost analysis for different translation mode
 
 2.  **NaN Value Handling:** Missing values (NaN) in the 'abstract' column are filled with empty strings to prevent errors during token counting.
 
-3.  **Model Price Definition:** A dictionary (`model_data`) is defined to store the pricing information for each translation model. This dictionary includes the encoding type, input price per million tokens, and output price per million tokens for each model. Example models include "gpt-4.5-preview-2025-02-27", "deepseek-chat", "gemini-2.0-flash-thinking-exp", "Grok", and "Mistral".
+3.  **Model Price Definition:** A dictionary (`model_data`) is defined to store the pricing information for each translation model. This dictionary includes the encoding type, input price per million tokens, and output price per million tokens for each model. Example models include "gpt-4.5-preview-2025-02-27", "deepseek-chat", "gemini-2.0-flash-thinking-exp", "grok-beta", and "Claude 3.7 Sonnet".
 
 4.  **Token Counting Function:** The `count_tokens` function calculates the number of tokens in a given text string using the `tiktoken` library and the "cl100k_base" encoding. This function handles potential encoding errors and returns 0 for invalid or empty text values. **The `cl100k_base` tokenizer is used for estimation purposes, and the actual token usage may vary depending on the specific model.**
 
@@ -124,26 +124,27 @@ This script performs an *estimated* cost analysis for different translation mode
 
 8.  **Results DataFrame Creation:** A new pandas DataFrame (`results_df`) is created from the aggregated data. This DataFrame contains columns for "Model", "Total Tokens (M)", and "Total Cost ($)".
 
-9.  **Results Display:** The script prints the `results_df` to the console, displaying the cost and token consumption for each model. An example output might look like this:
+9.  **Results Display:** The script prints the `results_df` to the console, displaying the cost and token consumption for each model. An example output is shown below. Note that the "Total Cost" for "gemini-2.0-flash-thinking-exp" and "claude-3-7-sonnet-20250219" is $0.00 because they are free models. The cost for "Claude 3.7 Sonnet" was updated in the example to reflect its actual cost.
+
 ```
 🔹 Costs (Dollars) and Tokens (Millions) per Model:
                         Model  Total Tokens (M)  Total Cost ($)
-   gpt-4.5-preview-2025-02-27          0.293063       33.492960
-                deepseek-chat          0.293063        0.206540
-gemini-2.0-flash-thinking-exp          0.293063        0.000000
-                         Grok          0.293063        1.814202
-                      Mistral          0.293063        0.000000
+   gpt-4.5-preview-2025-02-27          0.279108       31.399650
+                deepseek-chat          0.279108        0.191189
+gemini-2.0-flash-thinking-exp          0.279108        0.000000
+                    grok-beta          0.279108        2.791080
+   claude-3-7-sonnet-20250219          0.279108        2.511972
 
 ```
 
-10. **Total Calculation:** The script calculates the total number of tokens and the total cost across all models.
+10. **Total Calculation:** The script calculates the total number of tokens and the total cost across all models by summing the respective columns in the `results_df`.
 
-11. **Total Display:** The script prints the total number of tokens (in millions) and the total cost across all models to the console. An example output might look like this:
+11. **Total Display:** The script prints the total number of tokens (in millions) and the total cost across all models to the console, providing a summary of the overall resource consumption. An example output is shown below:
 
 ```
 🔹 Totals:
-  - Total Tokens: 1.465M
-  - Total Cost (All Models): $35.51
+  - Total Tokens: 1.396M
+  - Total Cost (All Models): $36.89
 ```
 
 ### Purpose:

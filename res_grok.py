@@ -12,9 +12,9 @@ dotenv_path = "/mnt/4d4f90e5-f220-481e-8701-f0a546491c35/arquivos/projetos/.env"
 load_dotenv(dotenv_path=dotenv_path)
 
 # Access and store the environment variable
-deepseek_api_key = os.getenv("DEEPSEEK_API_KEY")
-client = OpenAI(api_key=deepseek_api_key, base_url="https://api.deepseek.com")
-model = 'deepseek-chat'
+xai_api_key = os.getenv("XAI_API_KEY")
+client = OpenAI(api_key=xai_api_key, base_url="https://api.x.ai/v1")
+model = 'grok-beta'
 
 
 # Import
@@ -29,7 +29,7 @@ df['EN_ZH'] = df['EN_ZH'].astype(object)
 
 # Translate ZH -> EN and then EN -> ZH in one loop
 for index, row in tqdm(df.iterrows(), total=len(df), desc="Processing Translations"):
-    if index % 45 == 0 and index != 0:
+    if index % 50 == 0 and index != 0:
         print("Pausing for API rate limit...")
         time.sleep(60)
 
