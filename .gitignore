@@ -174,4 +174,5 @@ cython_debug/
 .pypirc
 
 # ArXiv
-tex_files/build_arxiv.sh
+tex_files/build.py
+tex_files/project.zip
