@@ -1,0 +1,32 @@
+model,original_ZH,ZH_EN,EN_ZH
+gpt-4.5-preview-2025-02-27,林暗草惊风，将军夜引弓。平明寻白羽，没在石棱中。,"In the dark woods, grasses tremble in the wind;  
+The general draws his bow at night.  
+At dawn, he searches for the white feathered arrow,  
+But finds it lodged deep within a stone crevice.","林深草动风瑟瑟，  
+将军夜引满弓发。  
+黎明寻觅白羽箭，  
+却见深嵌石隙间。"
+grok-beta,林暗草惊风，将军夜引弓。平明寻白羽，没在石棱中。,"The wind stirs the grass in the dark woods, the general draws his bow at night.
+At dawn, seeking the white feathers, they are found lodged in the rocky crevice.","风动暗林草，将军夜引弓。
+天明寻白羽，已在石缝中。"
+gemini-2.0-flash-thinking-exp,林暗草惊风，将军夜引弓。平明寻白羽，没在石棱中。,"Dark woods, wind stirs the grass,
+At night the general draws his bow.
+At dawn he seeks the white feather,
+Embedded deep in the stone crag.","深林风吹草动，
+夜将军拉满弓。
+黎明寻白羽，
+深嵌石壁中。"
+claude-3-7-sonnet-20250219,林暗草惊风，将军夜引弓。平明寻白羽，没在石棱中。,"Dark woods, grass startled by the wind,
+At night the general draws his bow.
+At dawn he searches for the white feather,
+Found lodged among the jagged rocks.","幽暗的森林，被风惊动的草，
+夜里将军拉开弓弦。
+黎明时分他寻找白色的羽毛，
+发现它嵌在嶙峋的岩石间。"
+deepseek-chat,林暗草惊风，将军夜引弓。平明寻白羽，没在石棱中。,"In gloomy woods grass shivers at wind's howl;  
+The general takes it for a tiger's growl.  
+He shoots and looks for his arrow next morn  
+Only to find a rock pierced mid the thorn.","林暗草惊风，  
+将军夜引弓。  
+平明寻白羽，  
+没在石棱中。"

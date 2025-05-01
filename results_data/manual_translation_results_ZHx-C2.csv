@@ -1,0 +1,35 @@
+model,original_ZH,ZH_EN,EN_ZH
+gpt-4.5-preview-2025-02-27,水纹珍簟思悠悠，千里佳期一夕休。从此无心爱良夜，任他明月下西楼。,"Ripples on precious bamboo mats stir lingering thoughts,  
+A night ends a thousand-mile cherished hope.  
+Henceforth, my heart cares not for lovely nights,  
+Let the bright moon descend the western pavilion as it pleases.","珍簟纹波起，幽思入梦长。  
+一夕千里愿，从此惜夜凉。  
+心绪不复念，好月任西厢。"
+grok-beta,水纹珍簟思悠悠，千里佳期一夕休。从此无心爱良夜，任他明月下西楼。,"Ripples on the water, thoughts linger deep,
+A thousand miles away, a meeting brief.
+From now on, no heart to cherish the night,
+Let the bright moon descend from the western tower.","水面涟漪，思绪深沉，
+千里之外，一晤匆匆。
+从今以后，无心恋夜，
+任明月自西楼而下。"
+gemini-2.0-flash-thinking-exp,水纹珍簟思悠悠，千里佳期一夕休。从此无心爱良夜，任他明月下西楼。,"Thoughts drift far on the fine mat with water marks.
+A thousand-mile promised future ended overnight.
+Henceforth, I have no heart for beautiful nights.
+Let the bright moon sink below the west tower.","细席水痕思绪远。
+千里盟约一夜空。
+从今无心赏良宵。
+任凭明月沉西楼。"
+claude-3-7-sonnet-20250219,水纹珍簟思悠悠，千里佳期一夕休。从此无心爱良夜，任他明月下西楼。,"Rippling water on the precious mat, thoughts drift endlessly,
+A thousand miles of waiting, tonight all hopes cease.
+From now on I have no love for fine evenings,
+Let the bright moon descend on the western tower as it pleases.","微波荡漾在珍贵的席垫上，思绪无尽飘散，
+千里相思，今夜所有希望皆止。
+从今以后我不再眷恋美好的夜晚，
+任凭明月降临西楼，随它所愿。"
+deepseek-chat,水纹珍簟思悠悠，千里佳期一夕休。从此无心爱良夜，任他明月下西楼。,"On mat with water design idle thoughts pour;  
+The happy date a thousand miles off is o'er.  
+Since then I've cared no more for moonlit night,  
+Let it wane and fall from my sight!","水纹珍簟思悠悠，  
+千里佳期一夕休。  
+从此无心爱良夜，  
+任他明月下西楼。"
